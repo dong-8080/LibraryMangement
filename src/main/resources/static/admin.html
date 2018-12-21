@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员主页</title>
+
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- page specific plugin styles -->
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css"/>
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="assets/css/ace-ie.min.css"/>
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <script src="jquery-3.0.0.min.js"></script>
+    <script src="jquery-3.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <!-- ace settings handler -->
+    <script src="assets/js/ace-extra.min.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+            <div class="box" align="center">
+
+                <!-- Tab panes -->
+                <div class="tab-content" style="margin-top: 100px">
+                    <!--添加书籍-->
+                    <div role="tabpanel" class="tab-pane active" id="addBook">
+                        <form class="form-horizontal" role="form">
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="addISBN"> ISBN</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="addISBN" placeholder="ISBN" class="col-xs-10 col-sm-5" title="请输入10位数字" />
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="addClassify"> 分类号 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="addClassify" placeholder="分类号" class="col-xs-10 col-sm-5" title="请输入a~z或A~Z的字母"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="addTitle"> 标题 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="addTitle" placeholder="标题" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="addAuthor"> 作者 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="addAuthor" placeholder="作者" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label no-padding-right" for="addPress"> 出版社 </label>
+                                <div class="col-sm-9" >
+                                    <input type="text" id="addPress" placeholder="出版社" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label no-padding-right" for="addPreDate"> 出版时间 </label>
+                                <div class="col-sm-9" >
+                                    <input type="text" id="addPreDate" placeholder="出版时间" class="col-xs-10 col-sm-5" title="请输入格式为2018-11-11或2018.11.11的时间"/>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label no-padding-right" for="addDuplicate"> 复本量 </label>
+                                <div class="col-sm-9" >
+                                    <input type="text" id="addDuplicate" placeholder="复本量" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label no-padding-right" for="addAllowance"> 余量 </label>
+                                <div class="col-sm-9" >
+                                    <input type="text" id="addAllowance" placeholder="余量" class="col-xs-10 col-sm-5" />
+                                </div>
+                            </div>
+
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-info" type="button" id="addBtn" style="margin:0 50px 0 -100px">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        添加书籍
+                                    </button>
+                                    <button class="btn btn-info" type="button" id="removeBtn">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                        删除书籍
+                                    </button>
+                                    <button class="btn" type="reset" id="resetBtn" style="margin-left: 20px">
+                                        <i class="ace-icon fa fa-undo bigger-110"></i>
+                                        重置
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--删除书籍-->
+                    <div role="tabpanel" class="tab-pane" id="removeBook">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ISBN=document.getElementById("addISBN");
+        var classify=document.getElementById("addClassify");
+        var title=document.getElementById("addTitle");
+        var author=document.getElementById("addAuthor");
+        var press=document.getElementById("addPress");
+        var preDate=document.getElementById("addPreDate");
+        var duplicate=document.getElementById("addDuplicate");
+        var allowance=document.getElementById("addAllowance");
+        $("#addBtn").click(function () {
+            if(ISBN.value!==""&&classify.value!==""&&title.value!==""
+            &&author.value!==""&&press.value!==""&&preDate!==""&&duplicate.value!==""
+            &&allowance.value!==""){
+                $.ajax({
+                    type:"GET",
+                    dataType:"json",
+                    url:"http://148.70.111.56:8080/admin/addbook",
+                    data:{isbn:ISBN.value,classify:classify.value,title:title.value,author:author.value,press:press.value,
+                        preDate:preDate.value,duplicate:duplicate.value,allowance:allowance.value},
+                    success:function (data) {
+                        if(data.code===200){
+                            alert("您已成功添加该书籍!");
+                        }else{
+                            console.log(data.code);
+                            alert(data.message);
+                        }
+                    }
+                })
+            }else{
+                alert("请将信息填写完整！");
+            }
+
+        });
+        $("#removeBtn").click(function () {
+            $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:"http://148.70.111.56:8080/admin/removebook",
+                data:{isbn:ISBN.value},
+                success:function (data) {
+                    if(data.code===200){
+                        alert("您已成功删除该书籍！");
+                        window.location.reload();
+                    }else{
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+    })
+</script>
+
+</body>
+</html>

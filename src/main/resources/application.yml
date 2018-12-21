@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://148.70.111.56:1433;DatabaseName=LibraryManagment;
+    username: libraryadmin
+    password: 123456
+  mvc:
+    static-path-pattern: /**
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+
+
+server:
+  port: 8080
+

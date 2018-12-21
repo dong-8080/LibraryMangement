@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login In</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="jquery-3.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .btn {
+            border-radius: 2px;
+            background-color: #6495ed;
+        }
+
+        .btn:hover {
+            background-color: #65a9ed;
+        }
+    </style>
+
+</head>
+<body style="background-color: whitesmoke">
+<!--普通注册模态框-->
+<div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel" align="center"><strong>普通注册</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row" style="margin: 10px 0px 10px 10px">
+                        <div class="form-group ">
+                            <label for="inputUsername3" class="col-xs-2"><strong>姓&nbsp;名&nbsp;&nbsp;：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="text" id="inputUsername3" class="form-control" style="margin-left: -100px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px 0px 10px 10px">
+                        <div class="form-group ">
+                            <label for="inputID1" class="col-xs-2"><strong>学&nbsp;号&nbsp;&nbsp;：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="text" id="inputID1" class="form-control" style="margin-left: -100px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px 0px 10px 10px">
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-xs-2"><strong>密 &nbsp;码&nbsp;&nbsp;：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="password" id="inputPassword3" class="form-control" style="margin-left: -100px"
+                                       data-toggle="tooltip" data-placement="top" title="请输入6~12个由数字或字母组成的密码">
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row" style="margin: 10px 0px 10px 10px">
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-xs-2"><strong>确认密码：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="text" id="confirmPassword" class="form-control"
+                                       style="margin-left: -100px">
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary-comman">注册</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">退出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--管理员注册模态框-->
+<div class="modal fade" id="admiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2" align="center"><strong>管理员注册</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row" style="margin: 10px 0 10px 10px">
+                        <div class="form-group ">
+                            <label for="inputUsername3" class="col-xs-2"><strong>姓&nbsp;名&nbsp;&nbsp;：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="text" id="inputUsername4" class="form-control" style="margin-left: -100px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px 0 10px 10px">
+                        <div class="form-group ">
+                            <label for="inputID2" class="col-xs-2"><strong>学&nbsp;号&nbsp;&nbsp;：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="text" id="inputID2" class="form-control" style="margin-left: -100px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px 0 10px 10px">
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-xs-2"><strong>密 &nbsp;码&nbsp;&nbsp;：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="password" id="inputPassword4" class="form-control" style="margin-left: -100px"
+                                       data-toggle="tooltip" data-placement="top" title="请输入6~12个由数字或字母组成的密码">
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row" style="margin: 10px 0px 10px 10px">
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-xs-2"><strong>确认密码：</strong></label>
+                            <div class="col-xs-3">
+                                <input type="text" id="confirmPassword2" class="form-control"
+                                       style="margin-left: -100px">
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="row" style="margin:10px 0px 10px 10px">
+                        <div class="form-group">
+                            <label class="col-xs-2">是否获取管理员权限？</label>
+                            <div class="col-xs-2" style="margin-left: -50px">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">注册</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">退出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3">
+            <img src="图标.png" style="margin: 5px 0 -20px 0">
+        </div>
+        <div class="col-xs-3">
+            <img src="图书管理系统.png" style="margin: 20px 0 -20px -170px">
+        </div>
+    </div>
+    <div class="row" style="margin:50px 20px 100px 20px">
+        <div class="col-md-6">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox" style="border-radius: 15px">
+                    <div class="item active">
+                        <img src="http://bpic.588ku.com/back_pic/04/50/26/12585cb51734770.jpg" alt="...">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://bpic.588ku.com/back_pic/02/65/63/65578876d4f20e9.jpg" alt="...">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://bpic.588ku.com/back_pic/00/03/23/74561dcfab53f5e.jpg" alt="...">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-md-4 col-md-offset-2">
+            <div class="box" style="background-color: white;padding:20px;border-radius: 15px">
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#commonLogin" aria-controls="home" role="tab"
+                                                                  data-toggle="tab">普通登陆</a></li>
+                        <li role="presentation"><a href="#AdministratorLogin" aria-controls="profile" role="tab"
+                                                   data-toggle="tab">管理员登陆</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!--普通用户登陆-->
+                        <div role="tabpanel" class="tab-pane active" id="commonLogin" style="margin-top: 20px">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputUsername1" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-user"></span></div>
+                                            <input id="inputUsername1" type="text" class="form-control" placeholder="学号"
+                                                   data-toggle="tooltip" data-placement="top" title="请输入数字，不包含中文或字母">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword1" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-lock"></span>
+                                            </div>
+                                            <input id="inputPassword1" type="password"  class="form-control" placeholder="密码"
+                                                   data-toggle="tooltip" data-placement="top" title="请输入数字或字母，不包含中文">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <label for="rememberMe1"></label>
+                                        <input type="checkbox" id="rememberMe1"><i>记住我</i>
+                                    </div>
+                                    <div class="col-sm-2 col-sm-offset-2">
+                                        <a data-toggle="modal" data-target="#customModal"><strong>注册</strong></a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <button type="button" class="btn" id="commanLogin"  style="width: 100%;">登陆
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--管理员登陆-->
+                        <div role="tabpanel" class="tab-pane" id="AdministratorLogin" style="margin-top: 20px">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputUsername2" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-education"></span></div>
+                                            <input id="inputUsername2" type="text" class="form-control" placeholder="工号"
+                                                   data-toggle="tooltip" data-placement="top" title="请输入数字或字母，不包含中文">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword2" class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-lock"></span></div>
+                                            <input id="inputPassword2" type="password" class="form-control" placeholder="密码"
+                                                   data-toggle="tooltip" data-placement="top" title="请输入数字或字母，不包含中文">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <label for="rememberMe2"></label>
+                                        <input type="checkbox" id="rememberMe2"><i>记住我</i>
+                                    </div>
+                                    <!--<div class="col-sm-2 col-sm-offset-2">
+                                        <a data-toggle="modal" data-target="#admiModal"><strong>注册</strong></a>
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <button type="button" class="btn" id="adminLogin" style="width: 100%;">登陆
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //普通登录
+    $(document).ready(function () {
+        $("#commanLogin").click(function () {
+            var username =document.getElementById("inputUsername1");
+            var password =document.getElementById("inputPassword1");
+            $(function () {
+                $.ajax({
+                    type:"GET",
+                    url:"http://148.70.111.56:8080/login",    /*请求的地址url*/
+                    data:{"account":username.value,"password":password.value},    /*提交的数据，使用GET方式，直接附加在url的后面*/
+                    dataType:"json",
+                    success:function (data,textStatus) {
+                        if(data.code===200){
+                            Cookies.set("account", data.body.account, { expires: 7 });
+                            Cookies.set("name", data.body.name, { expires: 7 });
+                            /*alert(Cookies.get("name"));*/
+                            window.location.href="HomePage.html";
+                        }
+                        else if(data.code!==200){
+                           window.alert(data.code+":  "+data.message);
+                        }
+                    },
+                    error:function (data,textStatus) {
+                        alert("请求失败！");
+                    }
+                });
+            });
+        });
+    });
+
+    //普通注册
+    $(document).ready(function () {
+        $(".btn-primary-comman").click(function () {
+            var name=document.getElementById("inputUsername3");
+            var id=document.getElementById("inputID1");
+            var password=document.getElementById("inputPassword3");
+            $.ajax({
+                type:"GET",
+                url:"http://148.70.111.56:8080/register",
+                dataType:"json",
+                data:{"account":id.value,"name":name.value,"password":password.value},
+                success:function (data) {
+                    if(data.code===200){
+                        window.alert(data.body);
+                    }else if(data.code!==200){
+                        window.alert(data.code+":"+data.message);
+                    }
+                },
+                error:function (data) {
+                    window.alert("请求失败");
+                }
+            });
+        });
+    });
+
+    //管理员登录
+    $(document).ready(function () {
+        $("#adminLogin").click(function () {
+            var adminUsername=document.getElementById("inputUsername2");
+            var adminPassword=document.getElementById("inputPassword2");
+            $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:"http://148.70.111.56:8080/admin/login",
+                data:{account:adminUsername.value,password:adminPassword.value},
+                success:function (data) {
+                    window.location.href="admin.html";
+                },
+                error:function (data) {
+                    alert("请求失败！");
+                }
+            })
+            }
+        )
+    })
+
+
+
+
+
+
+</script>
+</body>
+</html>

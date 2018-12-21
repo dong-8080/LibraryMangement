@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍详情信息</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="jquery-3.0.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <script src="jquery-3.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <style>
+        table{
+            border: 1px;
+        }
+        th{
+            font-size:1.1em;
+            text-align:left;
+            padding-top:5px;
+            padding-bottom:4px;
+            background-color:#A7C942;
+            text-align: center;
+        }
+        td{
+            padding-left: 20px;
+
+        }
+        th,td{
+            font-size:1em;
+            border:1px solid;
+            padding:3px 7px 2px 7px;
+            border-color:#ffffff;
+
+        }
+        .even{
+            background-color: #fff6ca;
+        }
+        .odd{
+            background-color: #a8dbe2;
+        }
+        #btn1,#btn2{
+            margin-left: 900px;
+            border-radius: 2px;
+            background-color: #6495ed;
+            float: left;
+        }
+        #btn1:hover,#btn2:hover{
+            background-color: #65a9ed;
+        }
+
+    </style>
+</head>
+<body>
+     <table  width="500px" align="center" style="margin-top: 100px" cellpadding="100px">
+        <tr class="odd">
+            <th style="width: 100px">ISBN</th>
+            <td id="isbn"></td>
+        </tr>
+         <tr class="even">
+             <th>分类号</th>
+             <td id="classify"></td>
+         </tr>
+         <tr class="odd">
+             <th>标题</th>
+             <td id="title"></td>
+         </tr>
+         <tr class="even">
+             <th>作者</th>
+             <td id="author"></td>
+         </tr>
+         <tr class="odd">
+             <th>出版社</th>
+             <td id="press"></td>
+         </tr>
+         <tr class="even">
+             <th>出版时间</th>
+             <td id="preDate"></td>
+         </tr>
+         <tr class="odd">
+             <th>复本量</th>
+             <td id="duplicate"></td>
+         </tr>
+         <tr class="even">
+             <th>余量</th>
+             <td id="allowance"></td>
+         </tr>
+        <!-- <tr class="odd">
+             <th>借阅</th>
+             <td id="borrow">是</td>
+         </tr>-->
+     </table>
+     <div class="container">
+         <div class="row">
+             <div class="col-xs-1">
+                 <button type="button" id="btn1" class="btn">借阅</button>
+             </div>
+             <div class="col-xs-1">
+                 <button type="submit" id="btn2" class="btn">返回</button>
+             </div>
+         </div>
+     </div>
+<script type="text/javascript">
+    
+   /* 书籍的详细信息、、、开始*/
+    $(document).ready(function () {
+        document.getElementById("isbn").innerHTML=Cookies.get("ISBN");
+        document.getElementById("classify").innerHTML=Cookies.get("classify");
+        document.getElementById("title").innerHTML=Cookies.get("title");
+        document.getElementById("author").innerHTML=Cookies.get("author");
+        document.getElementById("press").innerHTML=Cookies.get("press");
+        document.getElementById("preDate").innerHTML=Cookies.get("preDate");
+        document.getElementById("duplicate").innerHTML=Cookies.get("duplicate");
+        document.getElementById("allowance").innerHTML=Cookies.get("allowance");
+    });
+    /*书籍的详细信息、、、结束*/
+    
+    /*借阅功能、、、开始*/
+    $(document).ready(function () {
+        $("#btn1").click(function () {
+            var isbn=Cookies.get("ISBN");
+            var account=Cookies.get("account");
+            var allowance=document.getElementById("allowance").innerHTML;
+            $.ajax({
+                type:"GET",
+                url:"http://148.70.111.56:8080/borrowbook",
+                dataType:"json",
+                data:{"account":account,"isbn":isbn},
+                success:function (data) {
+                    if(data.code===200){
+                        alert(data.message);
+                        document.getElementById("allowance").innerHTML=(allowance-1);
+
+                        /*//如果借书
+                        if(document.getElementById("allowance").innerHTML!==allowance){
+                            var borrowAfterISBN=Cookies.get("ISBN");
+                            Cookies.set("borrowAfterISBN",borrowAfterISBN);
+                            console.log(Cookies.get("borrowAfterISBN"));
+                        }*/
+                    }else{
+                        console.log(data);
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+    })
+    $(document).ready(function () {
+        $("#btn2").click(function () {
+            window.location.href=document.referrer;
+        })
+    })
+</script>
+
+</body>
+</html>
